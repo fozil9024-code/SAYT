@@ -31,6 +31,8 @@ a { color: inherit; text-decoration: none; }
 .main-nav .nav-active { font-weight: 700; }
 .header-actions { display: flex; align-items: center; gap: 20px; }
 .search-link { display: flex; align-items: center; gap: 9px; color: #5e645f; font-size: 11px; }
+.search-input { width: 170px; height: 32px; padding: 0 9px; border: 1px solid var(--line); border-radius: 3px; background: #fff; color: var(--ink); font: 11px var(--body); }
+.search-input:focus { outline: 2px solid var(--green); outline-offset: 1px; }
 .search-icon { display: inline-block; width: 13px; height: 13px; border: 1.5px solid currentColor; border-radius: 50%; position: relative; }
 .search-icon::after { content: ""; position: absolute; width: 5px; height: 1.5px; background: currentColor; right: -4px; bottom: -2px; transform: rotate(48deg); }
 .bag-link { position: relative; width: 22px; height: 25px; display: grid; place-items: center; }
@@ -114,6 +116,8 @@ a { color: inherit; text-decoration: none; }
 .product-badge { position: absolute; z-index: 1; top: 12px; left: 12px; padding: 6px 8px; border-radius: 2px; background: var(--green); color: #303925; font-size: 8px; font-weight: 700; }
 .badge-new { background: #fff; }.badge-limited { background: #222723; color: #fff; }.badge-choice { background: #fff; }
 .favorite { position: absolute; z-index: 1; top: 10px; right: 12px; color: #333a32; font-size: 20px; line-height: 1; }
+.favorite { display: grid; place-items: center; width: 28px; height: 28px; padding: 0; border: 0; border-radius: 50%; background: rgba(255,255,255,.72); cursor: pointer; }
+.favorite.is-favorite { color: #d54d57; }
 .image-count { position: absolute; bottom: 11px; right: 12px; color: #727870; font: 600 8px var(--display); }
 .product-details { padding: 13px 2px 0; }
 .product-title-row, .product-buy-row { display: flex; justify-content: space-between; align-items: center; }
@@ -126,7 +130,19 @@ a { color: inherit; text-decoration: none; }
 .product-buy-row strong { font: 800 12px var(--display); }
 .product-buy-row strong small { color: #858b84; font: 500 9px var(--body); }
 .add-button { display: grid; place-items: center; width: 26px; height: 26px; border: 1px solid #dfe4d9; border-radius: 50%; color: #545b50; font-size: 12px; transition: background .2s ease, border-color .2s ease; }
+.add-button { padding: 0; background: transparent; cursor: pointer; }
 .add-button:hover { border-color: var(--green); background: var(--green); }
+.search-empty { grid-column: 1 / -1; padding: 30px 0; color: var(--muted); text-align: center; font-size: 13px; }
+.search-empty[hidden], .cart-total[hidden] { display: none; }
+.cart-dialog { width: min(420px, calc(100% - 32px)); max-height: min(80vh, 560px); padding: 24px; border: 1px solid var(--line); border-radius: 6px; background: var(--paper); color: var(--ink); }
+.cart-dialog::backdrop { background: rgba(23,26,24,.48); }
+.cart-dialog h2 { margin: 0 0 18px; font: 800 20px var(--display); }
+.cart-items { display: grid; gap: 12px; max-height: 320px; overflow: auto; }
+.cart-item { display: flex; justify-content: space-between; gap: 16px; padding-bottom: 10px; border-bottom: 1px solid var(--line); font-size: 12px; }
+.cart-item span:last-child { flex-shrink: 0; color: var(--muted); }
+.cart-empty { color: var(--muted); font-size: 13px; }
+.cart-total { display: flex; justify-content: space-between; margin: 18px 0; font: 700 13px var(--display); }
+.cart-close { display: block; width: 100%; min-height: 38px; border: 0; border-radius: 3px; background: var(--green); color: var(--ink); font: 700 11px var(--body); cursor: pointer; }
 
 .bottom-banner { min-height: 230px; position: relative; overflow: hidden; display: flex; align-items: center; margin-bottom: 36px; padding: 30px 52px; border-radius: 5px; background: #1e2420; color: #fff; }
 .banner-copy { position: relative; z-index: 1; }
@@ -158,9 +174,11 @@ a { color: inherit; text-decoration: none; }
 @media (max-width: 900px) {
   .page-width { width: min(100% - 48px, 720px); }
   .site-header { padding-inline: 24px; }
+  .site-header { position: relative; }
   .main-nav { gap: 18px; margin-left: 8px; }
   .header-actions { gap: 14px; }
   .search-link span:last-child { display: none; }
+  .search-input { position: absolute; top: 58px; right: 80px; z-index: 4; width: min(220px, calc(100vw - 110px)); box-shadow: 0 4px 15px rgba(23,26,24,.1); }
   .hero { grid-template-columns: 44% 56%; min-height: 445px; }
   .hero h1 { font-size: clamp(48px, 7vw, 65px); }
   .hero-visual { min-height: 360px; }
